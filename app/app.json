@@ -1,1 +1,27 @@
-{"expo":{"android":{"allowBackup":false,"package":"one.guppyguide.m2ewalk","permissions":["android.permission.ACTIVITY_RECOGNITION"],"versionCode":1},"extra":{"admobAppId":"","admobRewardedUnitId":"","apiBaseUrl":"","warning":"Verification build. Developed by the community; not an official app. Rates are still being finalized."},"name":"M2E歩数アプリ（仮）","orientation":"portrait","plugins":["expo-secure-store"],"scheme":"m2ewalk","slug":"m2e-walk","userInterfaceStyle":"light","version":"0.1.0"}}
+{
+  "expo": {
+    "android": {
+      "allowBackup": false,
+      "package": "one.guppyguide.m2ewalk",
+      "permissions": [
+        "android.permission.ACTIVITY_RECOGNITION"
+      ],
+      "versionCode": 2
+    },
+    "extra": {
+      "admobAppId": "",
+      "admobRewardedUnitId": "",
+      "apiBaseUrl": "https://m2e-walk.nepicobsv.workers.dev",
+      "warning": "Verification build. Developed by the community; not an official app. Rates are still being finalized."
+    },
+    "name": "M2E歩数アプリ（仮）",
+    "orientation": "portrait",
+    "plugins": [
+      "expo-secure-store"
+    ],
+    "scheme": "m2ewalk",
+    "slug": "m2e-walk",
+    "userInterfaceStyle": "light",
+    "version": "0.2.0"
+  }
+}

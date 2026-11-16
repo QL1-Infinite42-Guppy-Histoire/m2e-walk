@@ -2,9 +2,9 @@ import Constants from 'expo-constants';
 import * as SecureStore from 'expo-secure-store';
 import * as Crypto from 'expo-crypto';
 
-// The Worker is not deployed yet. Until app.json extra.apiBaseUrl is set,
-// the app runs in local verification mode (steps are counted and shown,
-// points are provisional on-device numbers only).
+// The app talks to the points Worker at app.json extra.apiBaseUrl.
+// If that is ever empty, the app falls back to local verification mode
+// (steps are counted and shown, points are provisional on-device only).
 export const API_BASE_URL: string =
   (Constants.expoConfig?.extra as { apiBaseUrl?: string } | undefined)?.apiBaseUrl ?? '';
 export const SERVER_CONNECTED = API_BASE_URL.length > 0;
@@ -35,7 +35,13 @@ export async function getStoredRecoveryCode(): Promise<string | null> {
 export async function ensureDeviceRegistration(): Promise<{ accountId: string; localOnly: boolean }> {
   const existing = await getStoredToken();
   const existingId = await getStoredAccountId();
-  if (existing && existingId) return { accountId: existingId, localOnly: !SERVER_CONNECTED };
+  // A token created by a pre-server build ("local.<uuid>") is not a server
+  // credential: when a server is configured, fall through and register for
+  // real instead of sending the local token (which would 401 forever).
+  const usableServerToken = !!existing && !existing.startsWith('local.');
+  if (existing && existingId && (!SERVER_CONNECTED || usableServerToken)) {
+    return { accountId: existingId, localOnly: !SERVER_CONNECTED };
+  }
 
   if (!SERVER_CONNECTED) {
     const localId = Crypto.randomUUID();
