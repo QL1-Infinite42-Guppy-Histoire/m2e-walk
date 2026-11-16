@@ -6,7 +6,7 @@
       "permissions": [
         "android.permission.ACTIVITY_RECOGNITION"
       ],
-      "versionCode": 2
+      "versionCode": 3
     },
     "extra": {
       "admobAppId": "",
@@ -22,6 +22,6 @@
     "scheme": "m2ewalk",
     "slug": "m2e-walk",
     "userInterfaceStyle": "light",
-    "version": "0.2.0"
+    "version": "0.2.1"
   }
 }

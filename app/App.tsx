@@ -7,6 +7,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import * as SecureStore from 'expo-secure-store';
+import Constants from 'expo-constants';
 
 import {
   getCurrentStepCounter, hasActivityRecognitionPermission, isStepCounterAvailable,
@@ -16,6 +17,8 @@ import {
   SERVER_CONNECTED, ensureDeviceRegistration, fetchMe, getStoredRecoveryCode, reportSteps,
   type Balances,
 } from './src/api';
+
+const APP_VERSION = Constants.expoConfig?.version ?? '';
 
 const K_LAST_COUNTER = 'sc_last_counter';
 const K_TODAY_DATE = 'sc_today_date';
@@ -181,7 +184,7 @@ export default function App() {
           <Text style={styles.title}>M2E歩数アプリ（仮）</Text>
           <Text style={styles.subtitle}>歩いてポイント、ギフト券に交換</Text>
           <View style={styles.chipRow}>
-            <View style={styles.chip}><Text style={styles.chipText}>歩数検証用 v0.1.0</Text></View>
+            <View style={styles.chip}><Text style={styles.chipText}>{`検証用 v${APP_VERSION}`}</Text></View>
             <View style={styles.chip}>
               <Text style={styles.chipText}>{SERVER_CONNECTED ? 'サーバー接続中' : 'サーバー未接続（端末内のみ）'}</Text>
             </View>
