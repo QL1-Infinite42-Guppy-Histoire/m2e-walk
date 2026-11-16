@@ -53,7 +53,7 @@ class StepCounterModule : Module() {
 
     // One-shot read: TYPE_STEP_COUNTER delivers its current cumulative value
     // as the first event after registering a listener.
-    AsyncFunction("getCurrentStepCounter") Coroutine {
+    AsyncFunction("getCurrentStepCounter") Coroutine { ->
       readCurrentCounter()
     }
   }
