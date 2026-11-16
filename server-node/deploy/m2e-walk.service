@@ -1,0 +1,33 @@
+# M2E Walk points server — systemd unit.
+# Install:  sudo cp deploy/m2e-walk.service /etc/systemd/system/
+#           sudo systemctl daemon-reload && sudo systemctl enable --now m2e-walk
+# Config:   /opt/m2e-walk/.env  (see .env.example; chmod 600, owned by m2e)
+# Logs:     journalctl -u m2e-walk -f   (access log = method/path/status only)
+
+[Unit]
+Description=M2E Walk points server (Node + SQLite)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=m2e
+Group=m2e
+WorkingDirectory=/opt/m2e-walk/server-node
+EnvironmentFile=/opt/m2e-walk/.env
+ExecStart=/usr/bin/node src/main.js
+Restart=on-failure
+RestartSec=3
+
+# Hardening (the app only needs its own directory).
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/m2e-walk/data /opt/m2e-walk/backups
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+
+[Install]
+WantedBy=multi-user.target

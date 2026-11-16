@@ -6,3 +6,6 @@ app/.expo/
 *.log
 .DS_Store
 server/.wrangler/
+server-node/data/
+server-node/.env
+server-node/backups/

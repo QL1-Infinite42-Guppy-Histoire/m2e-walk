@@ -1,0 +1,6 @@
+# M2E Walk — daily on-box DB snapshot. Install ON the VPS:
+#   sudo cp deploy/m2e-walk-backup.cron /etc/cron.d/m2e-walk-backup
+# Snapshots land in /opt/m2e-walk/backups (kept 14 days by backup.mjs).
+# This is NOT sufficient on its own: also pull them off the box daily
+# (deploy/pull-backup.sh) — the VPS plan may expire and take the box with it.
+30 3 * * * m2e /usr/bin/node /opt/m2e-walk/server-node/deploy/backup.mjs >> /opt/m2e-walk/backups/backup.log 2>&1

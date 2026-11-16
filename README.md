@@ -22,7 +22,13 @@ Developed by the community. Not an official app.
   - `app/src/stepLogic.ts` — delta logic shared with the server, unit-tested
 - `server/` — Cloudflare Worker + D1 points foundation (append-only ledger,
   step reporting with daily caps, AdMob SSV endpoint — disabled until AdMob
-  registration, admin endpoints behind a secret header). **Not deployed yet.**
+  registration, admin endpoints behind a secret header). Kept as a fallback:
+  the available Cloudflare token has no D1 rights, so this build cannot
+  be deployed as-is.
+- `server-node/` — **the main-line server since 2026-11-17 (user decision:
+  paid VPS route).** The same points foundation ported to Node.js + SQLite
+  (zero dependencies, D1-compatible DB shim, same tests plus HTTP
+  integration tests). Deployment runbook: `server-node/VPS_DEPLOY.md`.
 - `.github/workflows/build-apk.yml` — builds the verification APK
 
 ## Verification APK
@@ -41,8 +47,11 @@ can be installed directly for testing.
 
 ## Not yet
 
-- Worker deployment, AdMob registration (SSV stays disabled), gift-card
-  inventory (empty), public release
+- Server deployment — the Node + SQLite build (`server-node/`) is ready
+  and fully tested; it goes onto the existing VPS once SSH access is
+  arranged (see `server-node/VPS_DEPLOY.md`)
+- AdMob registration (SSV stays disabled), gift-card inventory (empty),
+  public release
 
 ## License
 
