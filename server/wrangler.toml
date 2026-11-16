@@ -1,0 +1,16 @@
+name = "m2e-walk"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+workers_dev = true
+
+# Create the database first (see README), then paste its id here.
+#   wrangler d1 create m2e-walk
+[[d1_databases]]
+binding = "DB"
+database_name = "m2e-walk"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+# Secrets are NOT stored in this file. Set them with:
+#   wrangler secret put ADMIN_SECRET
+#   wrangler secret put GIFT_CODE_KEY
+#   wrangler secret put ADMOB_SSV_ENABLED   (only "true" after AdMob setup)

@@ -1,0 +1,1 @@
+{"description":"M2E Walk — Cloudflare Worker + D1 points foundation (not deployed yet)","devDependencies":{"wrangler":"^3.0.0"},"name":"m2e-walk-server","private":true,"scripts":{"deploy":"wrangler deploy","dev":"wrangler dev","test":"node --test test/*.test.js"},"type":"module","version":"0.1.0"}

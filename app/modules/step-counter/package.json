@@ -1,0 +1,1 @@
+{"description":"Reads the Android TYPE_STEP_COUNTER hardware sensor (cumulative value since boot) for the M2E walking app.","license":"MIT","main":"src/index.ts","name":"step-counter","types":"src/index.ts","version":"0.1.0"}
